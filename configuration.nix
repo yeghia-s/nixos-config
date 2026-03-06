@@ -99,8 +99,8 @@
 
 environment.shellAliases = {
   yeghiserver = "ssh yeghia@yeghiserver.duckdns.org";
-  update = "sudo nixos-rebuild switch";
-  config = "sudo nvim /etc/nixos/configuration.nix";
+  update = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+  config = "nvim /etc/nixos/configuration.nix";
 };
 
 services.envfs.enable = true; # Often helps with path issues
