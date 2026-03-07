@@ -108,6 +108,11 @@ environment.shellAliases = {
   config = "nvim /etc/nixos/configuration.nix";
 };
 
+hardware.bluetooth = {
+  enable = true;
+  powerOnBoot = true;
+};
+
 programs.hyprland = {
   enable = true;
   xwayland.enable = true;

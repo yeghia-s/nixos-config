@@ -15,6 +15,7 @@
   hyprpaper     # wallpaper
   grim          # screenshots
   slurp         # screenshot selection
+  networkmanagerapplet	# WiFi/network GUI
   ];
   programs.git = {
   enable = true;
@@ -58,6 +59,7 @@ wayland.windowManager.hyprland = {
     
     exec-once = [
       "waybar"
+      "nm-applet --indicator"
     ];
 
     input = {
