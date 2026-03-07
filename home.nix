@@ -35,7 +35,6 @@
   glfw
   glew
   glm       # math library
-  aerc		# terminal email
   python3   # python
   pyright   # python language server
   ripgrep
@@ -45,6 +44,9 @@
   keepassxc # password manager
   chromium  # web browser
   obsidian  # note-taking
+  spotify-player    # terminal spotify
+  mpv       # webcame
+  w3m
   ];
   programs.git = {
   enable = true;
@@ -55,6 +57,13 @@
 programs.aerc = {
   enable = true;
   extraConfig = {
+    general = {
+      mailcap-file = "~/.config/aerc/mailcap";
+    };
+    filters = {
+      "text/html" = "${pkgs.aerc}/libexec/aerc/filters/html";
+      "text/plain" = "${pkgs.aerc}/libexec/aerc/filters/plaintext";
+    };
     ui = {
       timestamp-format = "2006-01-02 15:04";
       this-day-time-format = "15:04";
