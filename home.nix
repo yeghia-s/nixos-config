@@ -31,6 +31,7 @@
   libGL
   aerc		# terminal email
   python3   # python
+  pyright   # python language server
   ripgrep
   ];
   programs.git = {
@@ -69,6 +70,41 @@ programs.neovim = {
       '';
     }
 
+    # Indent guides
+{
+  plugin = indent-blankline-nvim;
+  type = "lua";
+  config = ''
+    require('ibl').setup()
+  '';
+}
+
+# Git signs
+{
+  plugin = gitsigns-nvim;
+  type = "lua";
+  config = ''
+    require('gitsigns').setup {
+      signs = {
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+      },
+    }
+  '';
+}
+
+# Auto pairs
+{
+  plugin = nvim-autopairs;
+  type = "lua";
+  config = ''
+    require('nvim-autopairs').setup()
+  '';
+}
+
 # LSP config
 
 {
@@ -87,6 +123,19 @@ programs.neovim = {
       end,
     })
     vim.lsp.enable('clangd')
+    
+    vim.lsp.config('pyright', {
+      on_attach = function(client, bufnr)
+        local opts = { noremap=true, silent=true, buffer=bufnr }
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+      end,
+    })
+    vim.lsp.enable('pyright')
   '';
 }
 
