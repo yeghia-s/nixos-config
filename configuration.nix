@@ -103,10 +103,19 @@
   enable = true;
   settings = {
     default_session = {
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd 'uwsm start hyprland-uwsm.desktop'";
       user = "greeter";
     };
   };
+};
+
+systemd.sleep.settings.Sleep = {
+  HibernateDelaySec = "3600";
+};
+
+services.logind = {
+  lidSwitch = "suspend";
+  lidSwitchExternalPower = "suspend";
 };
 
   gtk.iconCache.enable = true;
