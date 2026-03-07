@@ -23,6 +23,11 @@
   libreoffice	# office tools
   hyprlock	# lockscreen
   hypridle
+  gcc		# C++ compiler
+  cmake		# and other dev packages
+  gnumake
+  SDL2
+  libGL
   ];
   programs.git = {
   enable = true;
