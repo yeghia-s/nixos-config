@@ -34,7 +34,6 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
@@ -85,6 +84,11 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  kdePackages.breeze-icons
+  kdePackages.breeze
+  acpi
+  libsForQt5.qt5.qtquickcontrols2
+  libsForQt5.qt5.qtgraphicaleffects
   gnome-icon-theme
   hicolor-icon-theme
   thunderbird
@@ -98,9 +102,24 @@
   gtk.iconCache.enable = true;
 
 environment.shellAliases = {
+  homeman = "nvim /etc/nixos/home.nix";
   yeghiserver = "ssh yeghia@yeghiserver.duckdns.org";
-  update = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+  rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
   config = "nvim /etc/nixos/configuration.nix";
+};
+
+programs.hyprland = {
+  enable = true;
+  xwayland.enable = true;
+  withUWSM = true;
+};
+
+services.displayManager.defaultSession = "hyprland-uwsm";
+
+services.displayManager.sddm = {
+  enable = true;
+  wayland.enable = true;
+  theme = "breeze";
 };
 
 services.envfs.enable = true; # Often helps with path issues
