@@ -10,4 +10,9 @@
   home.packages = with pkgs; [
     # user packages go here
   ];
+  programs.git = {
+  enable = true;
+  userName = "yeghia";
+  userEmail = "yeghiasargis@yahoo.com";
+};
 }
