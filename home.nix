@@ -28,11 +28,26 @@
   gnumake
   SDL2
   libGL
+  aerc		# terminal email
   ];
   programs.git = {
   enable = true;
   userName = "yeghia";
   userEmail = "yeghiasargis@yahoo.com";
+};
+
+programs.aerc = {
+  enable = true;
+  extraConfig = {
+    ui = {
+      timestamp-format = "2006-01-02 15:04";
+      this-day-time-format = "15:04";
+      sidebar-width = 25;
+    };
+    compose = {
+      editor = "nvim";
+    };
+  };
 };
 
 xdg.portal = {
