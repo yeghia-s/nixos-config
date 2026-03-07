@@ -16,6 +16,8 @@
   grim          # screenshots
   slurp         # screenshot selection
   networkmanagerapplet	# WiFi/network GUI
+  brightnessctl	# brightness
+  wev		# monitor key events
   ];
   programs.git = {
   enable = true;
@@ -95,6 +97,18 @@ wayland.windowManager.hyprland = {
       "$mod SHIFT, 3, movetoworkspace, 3"
       "$mod SHIFT, 4, movetoworkspace, 4"
       "$mod SHIFT, 5, movetoworkspace, 5"
+      # Audio
+      ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+      ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+      # Brightness
+      ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+      ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+
+      # Display (F7)
+      ", XF86Display, exec, hyprctl keyword monitor ,preferred,auto,1"
     ];
 
     bindm = [
