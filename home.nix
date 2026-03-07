@@ -34,6 +34,7 @@
   libGLU
   glfw
   glew
+  glm       # math library
   aerc		# terminal email
   python3   # python
   pyright   # python language server
