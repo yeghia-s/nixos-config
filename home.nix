@@ -18,11 +18,22 @@
   networkmanagerapplet	# WiFi/network GUI
   brightnessctl	# brightness
   wev		# monitor key events
+  nerd-fonts.jetbrains-mono	# icons
+  font-awesome	# fonts
+  wl-clipboard	# save screenshot to clipboard
   ];
   programs.git = {
   enable = true;
   userName = "yeghia";
   userEmail = "yeghiasargis@yahoo.com";
+};
+
+xdg.portal = {
+  enable = true;
+  extraPortals = [ 
+    pkgs.xdg-desktop-portal-hyprland
+    pkgs.xdg-desktop-portal-gtk
+  ];
 };
 
 home.pointerCursor = {
@@ -62,6 +73,7 @@ wayland.windowManager.hyprland = {
     exec-once = [
       "waybar"
       "nm-applet --indicator"
+      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
     ];
 
     input = {
@@ -86,7 +98,6 @@ wayland.windowManager.hyprland = {
       "$mod SHIFT, right, movewindow, r"  # move window right
       "$mod SHIFT, up, movewindow, u"     # move window up
       "$mod SHIFT, down, movewindow, d"   # move window down
-      ", Print, exec, grim -g \"$(slurp)\" ~/screenshot.png"  # screenshot
       "$mod, 1, workspace, 1"
       "$mod, 2, workspace, 2"
       "$mod, 3, workspace, 3"
@@ -97,6 +108,7 @@ wayland.windowManager.hyprland = {
       "$mod SHIFT, 3, movetoworkspace, 3"
       "$mod SHIFT, 4, movetoworkspace, 4"
       "$mod SHIFT, 5, movetoworkspace, 5"
+      ", Print, exec, bash -c 'FILE=~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" $FILE && wl-copy < $FILE'"
       # Audio
       ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"

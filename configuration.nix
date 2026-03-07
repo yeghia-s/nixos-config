@@ -101,6 +101,11 @@
 
   gtk.iconCache.enable = true;
 
+  xdg.portal = {
+  enable = true;
+  extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+};
+
 environment.shellAliases = {
   homeman = "nvim /etc/nixos/home.nix";
   yeghiserver = "ssh yeghia@yeghiserver.duckdns.org";
