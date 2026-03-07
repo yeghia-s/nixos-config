@@ -9,7 +9,6 @@
 
   home.packages = with pkgs; [
     # user packages go here
-  waybar        # status bar
   wofi          # app launcher
   dunst         # notifications
   hyprpaper     # wallpaper
@@ -34,6 +33,127 @@ xdg.portal = {
     pkgs.xdg-desktop-portal-hyprland
     pkgs.xdg-desktop-portal-gtk
   ];
+};
+
+programs.waybar = {
+  enable = true;
+  settings = {
+    mainBar = {
+      layer = "top";
+      position = "top";
+      height = 30;
+      
+      modules-left = [ "hyprland/workspaces" ];
+      modules-center = [ "clock" ];
+      modules-right = [ "pulseaudio" "backlight" "battery" "network" "tray" ];
+
+      "hyprland/workspaces" = {
+        format = "{id}";
+        on-click = "activate";
+      };
+
+      "clock" = {
+        format = "{:%H:%M}";
+        format-alt = "{:%Y-%m-%d}";
+        tooltip-format = "{:%Y-%m-%d %H:%M:%S}";
+      };
+
+      "battery" = {
+        states = {
+          warning = 30;
+          critical = 15;
+        };
+        format = "{icon} {capacity}%";
+        format-icons = ["" "" "" "" ""];
+      };
+
+      "network" = {
+        format-wifi = " {essid}";
+        format-ethernet = " {ipaddr}";
+        format-disconnected = "disconnected";
+        tooltip-format = "{ifname}: {ipaddr}";
+      };
+
+      "pulseaudio" = {
+        format = "{icon} {volume}%";
+        format-muted = " muted";
+        format-icons = {
+          default = ["" "" ""];
+        };
+        on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+      };
+
+      "backlight" = {
+        format = " {percent}%";
+      };
+
+      "tray" = {
+        spacing = 10;
+      };
+    };
+  };
+    style = ''
+    * {
+      font-family : "JetBrainsMono Nerd Font";
+      font-size: 15px;
+      border: none;
+      border-radius: 0;
+      min-height: 0;
+    }
+
+    window#waybar {
+      background-color: rgba(20, 20, 20, 0.9);
+      color: #ffffff;
+    }
+
+    #workspaces button {
+      padding: 0 8px;
+      color: #6c7086;
+      background: transparent;
+    }
+
+    #workspaces button.active {
+      color: #cdd6f4;
+      border-bottom: 2px solid #89b4fa;
+    }
+
+    #clock {
+      color: #ffffff;
+      padding: 0 10px;
+    }
+
+    #battery {
+      color: #b9f5b0;
+      padding: 0 10px;
+    }
+
+    #battery.warning {
+      color: #f9e2af;
+    }
+
+    #battery.critical {
+      color: #f38ba8;
+    }
+
+    #network {
+      color: #a8eeff;
+      padding: 0 10px;
+    }
+
+    #pulseaudio {
+      color: #dbb6ff;
+      padding: 0 10px;
+    }
+
+    #backlight {
+      color: #ffe566;
+      padding: 0 10px;
+    }
+
+    #tray {
+      padding: 0 10px;
+    }
+  '';
 };
 
 home.pointerCursor = {
