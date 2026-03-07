@@ -34,7 +34,7 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.desktopManager.gnome.enable = true;
+#   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -99,6 +99,16 @@
   alacritty
   ];
 
+  services.greetd = {
+  enable = true;
+  settings = {
+    default_session = {
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+      user = "greeter";
+    };
+  };
+};
+
   gtk.iconCache.enable = true;
 
   xdg.portal = {
@@ -126,11 +136,11 @@ programs.hyprland = {
 
 services.displayManager.defaultSession = "hyprland-uwsm";
 
-services.displayManager.sddm = {
-  enable = true;
-  wayland.enable = true;
-  theme = "breeze";
-};
+# services.displayManager.sddm = {
+#   enable = true;
+#   wayland.enable = true;
+#   theme = "breeze";
+# };
 
 services.envfs.enable = true; # Often helps with path issues
 xdg.icons.enable = true; # Ensures icon theme caches are updated
