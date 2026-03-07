@@ -19,7 +19,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.yeghia = import ./home.nix;
+            home-manager.users.yeghia = import ./home/default.nix;
           }
         ];
       };
