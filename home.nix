@@ -47,6 +47,7 @@
   spotify-player    # terminal spotify
   mpv       # webcame
   w3m
+  aichat
   ];
   programs.git = {
   enable = true;
@@ -518,8 +519,6 @@ wayland.windowManager.hyprland = {
       ", Print, exec, bash -c 'FILE=~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" $FILE && wl-copy < $FILE'"
       # Audio
       ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
       ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 
       # Brightness
@@ -530,10 +529,17 @@ wayland.windowManager.hyprland = {
       ", XF86Display, exec, hyprctl keyword monitor ,preferred,auto,1"
     ];
 
+    binde = [
+      # Smooth Volume Control
+      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+    ];
+
     bindm = [
       "$mod, mouse:272, movewindow"   # Super + left click drag to move
       "$mod, mouse:273, resizewindow" # Super + right click drag to resize
     ];
+
   };
 };
 
