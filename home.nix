@@ -34,6 +34,7 @@
   pyright   # python language server
   ripgrep
   imv       # image viewer
+  hyprsunset    # night light
   ];
   programs.git = {
   enable = true;
@@ -494,6 +495,7 @@ wayland.windowManager.hyprland = {
       "$mod SHIFT, 3, movetoworkspace, 3"
       "$mod SHIFT, 4, movetoworkspace, 4"
       "$mod SHIFT, 5, movetoworkspace, 5"
+      "$mod, N, exec, pkill hyprsunset || hyprsunset -t 3500"
       ", Print, exec, bash -c 'FILE=~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" $FILE && wl-copy < $FILE'"
       # Audio
       ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
