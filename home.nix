@@ -25,10 +25,13 @@
   hypridle
   gcc		# C++ compiler
   cmake		# and other dev packages
+  clang-tools
   gnumake
   SDL2
   libGL
   aerc		# terminal email
+  python3   # python
+  ripgrep
   ];
   programs.git = {
   enable = true;
@@ -48,6 +51,166 @@ programs.aerc = {
       editor = "nvim";
     };
   };
+};
+
+# neovim customization
+programs.neovim = {
+  enable = true;
+  defaultEditor = true;
+  viAlias = true;
+  vimAlias = true;
+
+
+    plugins = with pkgs.vimPlugins; [
+    {
+      plugin = catppuccin-nvim;
+      config = ''
+        colorscheme catppuccin-mocha
+      '';
+    }
+
+# LSP config
+
+{
+  plugin = nvim-lspconfig;
+  type = "lua";
+  config = ''
+    vim.lsp.config('clangd', {
+      on_attach = function(client, bufnr)
+        local opts = { noremap=true, silent=true, buffer=bufnr }
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+      end,
+    })
+    vim.lsp.enable('clangd')
+  '';
+}
+
+
+# Autocompletion
+{
+  plugin = nvim-cmp;
+  type = "lua";
+  config = ''
+    local cmp = require('cmp')
+    cmp.setup {
+      mapping = cmp.mapping.preset.insert {
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm { select = true },
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+      },
+      sources = {
+        { name = "nvim_lsp" },
+      },
+    }
+  '';
+}
+
+# LSP completion source
+{
+  plugin = cmp-nvim-lsp;
+  type = "lua";
+  config = "";
+}
+
+    {
+  plugin = lualine-nvim;
+  type = "lua";
+  config = ''
+    require('lualine').setup {
+      options = {
+        theme = "catppuccin",
+        component_separators = "|",
+        section_separators = "",
+      };
+      sections = {
+        lualine_a = {"mode"},
+        lualine_b = {"branch", "diff", "diagnostics"},
+        lualine_c = {"filename"},
+        lualine_x = {"encoding", "filetype"},
+        lualine_y = {"progress"},
+        lualine_z = {"location"},
+      },
+    }
+  '';
+}
+
+    {
+  plugin = plenary-nvim;
+  type = "lua";
+  config = ''
+    require('plenary')
+  '';
+}
+
+    # File tree
+{
+  plugin = nvim-tree-lua;
+  type = "lua";
+  config = ''
+    require('nvim-tree').setup()
+    vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
+  '';
+}
+
+# Icons for file tree
+{
+  plugin = nvim-web-devicons;
+  type = "lua";
+  config = ''
+    require('nvim-web-devicons').setup()
+  '';
+}
+
+# Fuzzy finder
+{
+  plugin = telescope-nvim;
+  type = "lua";
+  config = ''
+    local builtin = require('telescope.builtin')
+    vim.keymap.set('n', '<leader>ff', builtin.find_files)
+    vim.keymap.set('n', '<leader>fg', builtin.live_grep)
+    vim.keymap.set('n', '<leader>fb', builtin.buffers)
+  '';
+}
+
+    {
+  plugin = nvim-treesitter.withAllGrammars;
+  type = "lua";
+  config = ''
+    require('nvim-treesitter').setup {
+      highlight = {
+        enable = true,
+      },
+      indent = {
+        enable = true,
+      },
+    }
+  '';
+}
+  ];
+  
+  extraConfig = ''
+    set number
+    set relativenumber
+    set tabstop=4
+    set shiftwidth=4
+    set expandtab
+    set smartindent
+    set wrap
+    set ignorecase
+    set smartcase
+    set termguicolors
+    set scrolloff=8
+    set signcolumn=yes
+    set updatetime=50
+    let mapleader = " "
+  '';
 };
 
 xdg.portal = {

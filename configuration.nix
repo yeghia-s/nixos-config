@@ -126,7 +126,7 @@ services.logind = {
 };
 
 environment.shellAliases = {
-  homeman = "nvim /etc/nixos/home.nix";
+  homemgr = "nvim /etc/nixos/home.nix";
   yeghiserver = "ssh yeghia@yeghiserver.duckdns.org";
   rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
   config = "nvim /etc/nixos/configuration.nix";
