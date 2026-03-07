@@ -27,14 +27,20 @@
   cmake		# and other dev packages
   clang-tools
   gnumake
+  pkg-config
   SDL2
+  mesa
   libGL
+  libGLU
+  glfw
+  glew
   aerc		# terminal email
   python3   # python
   pyright   # python language server
   ripgrep
   imv       # image viewer
   hyprsunset    # night light
+  zathura   # pdf viewing
   ];
   programs.git = {
   enable = true;
