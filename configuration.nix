@@ -109,6 +109,14 @@
   };
 };
 
+services.syncthing = {
+  enable = true;
+  user = "yeghia";
+  dataDir = "/home/yeghia";
+  configDir = "/home/yeghia/.config/syncthing";
+  openDefaultPorts = true;
+};
+
 systemd.sleep.settings.Sleep = {
   HibernateDelaySec = "3600";
 };

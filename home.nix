@@ -33,6 +33,7 @@
   python3   # python
   pyright   # python language server
   ripgrep
+  imv       # image viewer
   ];
   programs.git = {
   enable = true;
