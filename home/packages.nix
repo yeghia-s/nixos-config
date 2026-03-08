@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    rclone	      # remote sync
     wofi              # app launcher
     dunst             # notifications
     hyprpaper         # wallpaper
