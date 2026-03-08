@@ -27,6 +27,11 @@
     };
   };
 
+  programs.direnv = {
+  enable = true;
+  nix-direnv.enable = true;
+};
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
