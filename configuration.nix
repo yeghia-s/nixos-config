@@ -134,6 +134,7 @@ services.logind = {
 };
 
 environment.shellAliases = {
+  weather = "curl wttr.in/Toronto?format=3";
   home = "cd /etc/nixos/home";
   yeghiserver = "ssh yeghia@yeghiserver.duckdns.org";
   rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";

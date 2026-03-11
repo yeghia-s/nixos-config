@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    rclone	      # remote sync
+    wl-clipboard      # nvim clipboard copy
+    rclone	          # remote sync
     wofi              # app launcher
     dunst             # notifications
     hyprpaper         # wallpaper

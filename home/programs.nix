@@ -6,6 +6,8 @@
     userEmail = "yeghiasargis@yahoo.com";
   };
 
+  
+
   programs.aerc = {
     enable = true;
     extraConfig = {
@@ -34,6 +36,9 @@
 
   programs.neovim = {
     enable = true;
+    extraLuaConfig = ''
+    vim.opt.clipboard = "unnamedplus"
+  '';
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
