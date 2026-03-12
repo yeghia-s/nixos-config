@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    feishin           # music player (for navidrome)
+    calibre           # epub reader
+    qbittorrent       # torrent client
     wl-clipboard      # nvim clipboard copy
     rclone	          # remote sync
     wofi              # app launcher
