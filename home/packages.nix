@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    unzip             # zip file tool
     jre               # java
     jq                # json
     wlr-randr         # resolution info
