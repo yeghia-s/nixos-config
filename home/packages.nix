@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    starsector        # game
     unzip             # zip file tool
-    jre               # java
     jq                # json
     wlr-randr         # resolution info
     steamguard-cli    # steam authenticator
