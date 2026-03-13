@@ -9,6 +9,14 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  
+  # steam
+  programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      gamescopeSession.enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

@@ -6,7 +6,7 @@
     userEmail = "yeghiasargis@yahoo.com";
   };
 
-  
+  programs.mangohud.enable = true;  
 
   programs.aerc = {
     enable = true;

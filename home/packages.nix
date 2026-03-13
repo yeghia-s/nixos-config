@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    wlr-randr         # resolution info
+    steamguard-cli    # steam authenticator
+    gamescope         # session compositor
+    heroic            # heroic games launcher
     feishin           # music player (for navidrome)
     calibre           # epub reader
     qbittorrent       # torrent client
@@ -16,7 +20,6 @@
     wev               # monitor key events
     nerd-fonts.jetbrains-mono  # icons
     font-awesome      # fonts
-    wl-clipboard      # save screenshot to clipboard
     libreoffice       # office tools
     hyprlock          # lockscreen
     hypridle
