@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    lutris            # game launcher
     jre               # java
     jq                # json
     wlr-randr         # resolution info
