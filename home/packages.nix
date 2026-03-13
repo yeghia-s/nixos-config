@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    jre               # java
     jq                # json
     wlr-randr         # resolution info
     steamguard-cli    # steam authenticator
