@@ -15,6 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    tmux              # sessions
     toggleMute        # toggle mute script
     toggleMicMute     # toggle mic mute
     starsector        # space game
