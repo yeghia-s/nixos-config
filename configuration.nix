@@ -107,7 +107,12 @@
   alacritty
   ];
 
-  services.greetd = {
+services.udev.extraRules = ''
+  SUBSYSTEM=="leds", KERNEL=="platform::mute", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chmod 0666 /sys/class/leds/%k/brightness"
+  SUBSYSTEM=="leds", KERNEL=="platform::micmute", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chmod 0666 /sys/class/leds/%k/brightness"
+'';
+
+services.greetd = {
   enable = true;
   settings = {
     default_session = {

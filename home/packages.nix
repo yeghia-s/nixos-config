@@ -1,7 +1,23 @@
 { config, pkgs, ... }:
+
+let
+  toggleMute = pkgs.writeShellScriptBin "toggle-mute" ''
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    MUTED=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -c '\[MUTED\]')
+    echo $MUTED > /sys/class/leds/platform::mute/brightness
+  '';
+
+  toggleMicMute = pkgs.writeShellScriptBin "toggle-micmute" ''
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    MUTED=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -c '\[MUTED\]')
+    echo $MUTED > /sys/class/leds/platform::micmute/brightness
+  '';
+in
 {
   home.packages = with pkgs; [
-    starsector        # game
+    toggleMute        # toggle mute script
+    toggleMicMute     # toggle mic mute
+    starsector        # space game
     unzip             # zip file tool
     jq                # json
     wlr-randr         # resolution info

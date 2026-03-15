@@ -41,8 +41,8 @@
         "$mod SHIFT, 5, movetoworkspace, 5"
         "$mod, N, exec, pkill hyprsunset || hyprsunset -t 3500"
         ", Print, exec, bash -c 'FILE=~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" $FILE && wl-copy < $FILE'"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioMute, exec, toggle-mute"
+        ", XF86AudioMicMute, exec, toggle-micmute"
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
         ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
         ", XF86Display, exec, hyprctl keyword monitor ,preferred,auto,1"
@@ -56,5 +56,5 @@
         "$mod, mouse:273, resizewindow"
       ];
     };
-  };
+ };
 }

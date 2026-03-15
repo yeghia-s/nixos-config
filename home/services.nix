@@ -11,7 +11,7 @@
     };
     Install.WantedBy = [ "lock.target" ];
   };
-
+  
   services.hypridle = {
     enable = true;
     settings = {
