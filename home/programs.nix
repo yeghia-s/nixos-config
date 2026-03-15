@@ -8,6 +8,16 @@
 
   programs.mangohud.enable = true;  
 
+programs.alacritty = {
+  enable = true;
+  settings = {
+    font = {
+      normal.family = "JetBrainsMono Nerd Font";
+      size = 13;
+    };
+  };
+};
+
   programs.aerc = {
     enable = true;
     extraConfig = {
@@ -218,6 +228,7 @@
     '';
   };
 
+
   programs.waybar = {
     enable = true;
     settings = {
@@ -242,8 +253,8 @@
             warning = 30;
             critical = 15;
           };
-          format = "{icon} {capacity}%";
-          format-icons = ["" "" "" "" ""];
+          format = "<span font-size='12pt' rise='-2000'>{icon}</span> <span rise='-4500'>{capacity}%</span>";
+          format-icons = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂"];
         };
         "network" = {
           format-wifi = " {essid}";
@@ -252,15 +263,15 @@
           tooltip-format = "{ifname}: {ipaddr}";
         };
         "pulseaudio" = {
-          format = "{icon} {volume}%";
-          format-muted = " muted";
+          format = "<span font-size='20pt' rise='-2000'>{icon}</span> {volume}%";
+          format-muted = "<span font-size='20pt' rise='-2000'></span> muted";
           format-icons = {
-            default = ["" "" ""];
+            default = ["" "" ""];
           };
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
         "backlight" = {
-          format = " {percent}%";
+          format = "<span font-size='20pt' rise='-2000'>󰃟</span> {percent}%";
         };
         "tray" = {
           spacing = 10;
@@ -269,7 +280,7 @@
     };
     style = ''
       * {
-        font-family: "JetBrainsMono Nerd Font";
+        font-family: "JetBrainsMono Nerd Font Mono", "JetBrainsMono Nerd Font", monospace;
         font-size: 15px;
         border: none;
         border-radius: 0;
@@ -318,5 +329,6 @@
         padding: 0 10px;
       }
     '';
-  };
+};
+
 }
