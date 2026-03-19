@@ -18,6 +18,16 @@ programs.alacritty = {
   };
 };
 
+programs.mpv = {
+  enable = true;
+  config = {
+    gpu-api = "vulkan";
+    gpu-context = "waylandvk";
+    vo = "gpu-next";
+    hwdec = "auto-safe";
+  };
+};
+
   programs.aerc = {
     enable = true;
     extraConfig = {

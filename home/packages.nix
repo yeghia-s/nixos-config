@@ -15,6 +15,8 @@ let
 in
 {
   home.packages = with pkgs; [
+    easyeffects       # audio equalizer
+    jellyfin-mpv-shim # jellyfin mpv player
     tree              # view file structure
     tmux              # sessions
     toggleMute        # toggle mute script
