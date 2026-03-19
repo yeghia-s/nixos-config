@@ -15,6 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    strawberry        # music organizer/player
     easyeffects       # audio equalizer
     jellyfin-mpv-shim # jellyfin mpv player
     tree              # view file structure
