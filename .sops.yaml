@@ -1,0 +1,8 @@
+keys:
+  - &yeghia age1y9xvnz5evqguatpcyhrywmzhavj4g86axn266a27h7snktftm4zs9kdg2a
+
+creation_rules:
+  - path_regex: secrets/.*
+    key_groups:
+      - age:
+          - *yeghia

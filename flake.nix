@@ -7,8 +7,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    sops-nix.url = "github:mic92/sops-nix";
   };
-  outputs = { self, nixpkgs, home-manager, flake-utils, ... }:
+  outputs = { self, nixpkgs, home-manager, flake-utils, sops-nix, ... }:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -24,6 +25,9 @@
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
+            home-manager.sharedModules = [
+                sops-nix.homeManagerModules.sops
+            ];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.yeghia = import ./home/default.nix;

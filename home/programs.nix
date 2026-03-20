@@ -248,7 +248,7 @@ programs.mpv = {
         height = 30;
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "clock" ];
-        modules-right = [ "pulseaudio" "backlight" "battery" "network" "tray" ];
+        modules-right = [ "custom/calendar" "pulseaudio" "backlight" "battery" "network" "tray" ];
         "hyprland/workspaces" = {
           format = "{id}";
           on-click = "activate";
@@ -285,6 +285,14 @@ programs.mpv = {
         };
         "tray" = {
           spacing = 10;
+        };
+          "custom/calendar" = {
+          exec = "khal list now 24h --format '{start-time} {title}' --day-format '' 2>/dev/null | head -1 | cut -c1-30";
+          interval = 300;
+          format = "󰃭  {}";
+          on-click = "alacritty -e khal interactive";
+          tooltip-format = "{}";
+          tooltip = true;
         };
       };
     };
@@ -327,6 +335,10 @@ programs.mpv = {
         color: #a8eeff;
         padding: 0 10px;
       }
+      #custom-calendar {
+      color: #a6e3a1;
+      padding: 0 10px;
+    }
       #pulseaudio {
         color: #dbb6ff;
         padding: 0 10px;

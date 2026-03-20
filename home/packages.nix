@@ -15,6 +15,8 @@ let
 in
 {
   home.packages = with pkgs; [
+    age
+    sops              # secrets
     strawberry        # music organizer/player
     easyeffects       # audio equalizer
     jellyfin-mpv-shim # jellyfin mpv player
