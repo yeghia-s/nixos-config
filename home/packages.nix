@@ -15,6 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    terraform         # VM through code
     age
     sops              # secrets
     strawberry        # music organizer/player
