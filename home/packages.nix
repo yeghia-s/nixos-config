@@ -15,7 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    discord           # chat
+    vesktop           # discord client
     terraform         # VM through code
     age
     sops              # secrets
