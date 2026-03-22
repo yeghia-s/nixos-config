@@ -7,6 +7,7 @@
     secrets = {
       vdirsyncer_client_id = {};
       vdirsyncer_client_secret = {};
+      vdirsyncer_baikal_password = {};
     };
   };
 
@@ -35,18 +36,40 @@ home.activation.vdirsyncerConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
   type = "filesystem"
   path = "${config.home.homeDirectory}/.local/share/vdirsyncer/calendars/"
   fileext = ".ics"
+
+  [pair baikal]
+  a = "baikal_remote"
+  b = "baikal_local"
+  collections = ["from a"]
+  conflict_resolution = "a wins"
+
+  [storage baikal_remote]
+  type = "caldav"
+  url = "https://dav.armstream.stream/dav.php/calendars/yeghiasargis@yahoo.com/"
+  username = "yeghiasargis@yahoo.com"
+  password = "$(cat ${config.sops.secrets.vdirsyncer_baikal_password.path})"
+
+  [storage baikal_local]
+  type = "filesystem"
+  path = "${config.home.homeDirectory}/.local/share/vdirsyncer/baikal/"
+  fileext = ".ics"
   EOF
 '';
 
   xdg.configFile."khal/config".text = ''
     [calendars]
-    [[personal]]
-    path = ${config.home.homeDirectory}/.local/share/vdirsyncer/calendars/*
+   # [[personal]]
+   # path = ${config.home.homeDirectory}/.local/share/vdirsyncer/calendars/*
+   # type = discover
+   # color = light blue
+
+    [[baikal]]
+    path = ${config.home.homeDirectory}/.local/share/vdirsyncer/baikal/*
     type = discover
-    color = light blue
+    color = light green
 
     [default]
-    default_calendar = yeghiasargis@yahoo.com
+    default_calendar = default 
     highlight_event_days = true
 
     [locale]
