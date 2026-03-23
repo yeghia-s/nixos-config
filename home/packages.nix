@@ -15,6 +15,11 @@ let
 in
 {
   home.packages = with pkgs; [
+    swww              # wallpaper
+    jellyfin-media-player   # jellyfin client
+    sysstat           # CPU usage
+    lm_sensors        # monitor sensors
+    htop              # monitor programs
     wf-recorder       # screen recorder
     mpvpaper          # video wallpaper
     file              # file information
@@ -24,7 +29,6 @@ in
     sops              # secrets
     strawberry        # music organizer/player
     easyeffects       # audio equalizer
-    jellyfin-mpv-shim # jellyfin mpv player
     tree              # view file structure
     tmux              # sessions
     toggleMute        # toggle mute script
