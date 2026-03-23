@@ -15,6 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    unrar             # unrar package
     swww              # wallpaper
     jellyfin-media-player   # jellyfin client
     sysstat           # CPU usage
@@ -25,7 +26,7 @@ in
     file              # file information
     vesktop           # discord client
     terraform         # VM through code
-    age
+    age               # encryption
     sops              # secrets
     strawberry        # music organizer/player
     easyeffects       # audio equalizer

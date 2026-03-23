@@ -17,6 +17,7 @@
         "nm-applet --indicator"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "swww-daemon && swww img /home/yeghia/Pictures/wallpapers/nixos.wallpaper3.jpg"
+        "/run/current-system/sw/bin/gnome-keyring-daemon --start --components=secrets"
       #  "bash /home/yeghia/scripts/wallpaper.sh"
       ];
       misc = {

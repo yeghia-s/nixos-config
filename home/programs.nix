@@ -8,6 +8,28 @@
 
   programs.mangohud.enable = true;  
 
+programs.bash = {
+  enable = true;
+  bashrcExtra = ''
+    function edit-secret() {
+      local BACKUP_DIR="$HOME/.secret-backups"
+      mkdir -p "$BACKUP_DIR"
+      age -d "$1" > /tmp/secret_edit && \
+      cp /tmp/secret_edit /tmp/secret_edit.orig && \
+      nvim /tmp/secret_edit
+      if ! cmp -s /tmp/secret_edit /tmp/secret_edit.orig; then
+        cp "$1" "$BACKUP_DIR/$(basename $1).$(date +%Y%m%d%H%M%S).bak" && \
+        age -p /tmp/secret_edit > "$1" && \
+        echo "Re-encrypted and backup saved."
+      else
+        echo "No changes, skipping re-encryption."
+      fi
+      shred -u /tmp/secret_edit
+      shred -u /tmp/secret_edit.orig
+    }
+  '';
+};
+
 programs.alacritty = {
   enable = true;
   settings = {
