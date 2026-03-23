@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -89,7 +89,7 @@ services.greetd = {
   enable = true;
   settings = {
     default_session = {
-      command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-password --cmd 'uwsm start hyprland-uwsm.desktop'";
+      command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-password --asterisks --cmd 'uwsm start hyprland-uwsm.desktop'";
       user = "greeter";
     };
   };
@@ -191,6 +191,32 @@ services.tlp = {
     START_CHARGE_THRESH_BAT0 = 20;
     STOP_CHARGE_THRESH_BAT0 = 80;
   };
+};
+
+security.pam.services.greetd = {
+  enableGnomeKeyring = true;
+  fprintAuth = false;
+  text = lib.mkForce ''
+    # Account management.
+    account required pam_unix.so
+
+    # Authentication — password first, fingerprint as fallback.
+    auth sufficient pam_unix.so likeauth nullok try_first_pass
+    auth sufficient ${pkgs.fprintd}/lib/security/pam_fprintd.so
+    auth optional ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
+    auth required pam_deny.so
+
+    # Password management.
+    password sufficient pam_unix.so nullok yescrypt
+    password optional ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so use_authtok
+
+    # Session management.
+    session required pam_env.so readenv=0
+    session required pam_unix.so
+    session required pam_loginuid.so
+    session optional ${pkgs.systemd}/lib/security/pam_systemd.so
+    session optional ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so auto_start
+  '';
 };
 
 services.thermald.enable = true;

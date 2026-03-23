@@ -15,6 +15,9 @@ let
 in
 {
   home.packages = with pkgs; [
+    wf-recorder       # screen recorder
+    mpvpaper          # video wallpaper
+    file              # file information
     vesktop           # discord client
     terraform         # VM through code
     age
@@ -32,7 +35,6 @@ in
     wlr-randr         # resolution info
     steamguard-cli    # steam authenticator
     gamescope         # session compositor
-    heroic            # heroic games launcher
     feishin           # music player (for navidrome)
     calibre           # epub reader
     qbittorrent       # torrent client
@@ -40,7 +42,6 @@ in
     rclone	          # remote sync
     wofi              # app launcher
     dunst             # notifications
-    hyprpaper         # wallpaper
     grim              # screenshots
     slurp             # screenshot selection
     networkmanagerapplet  # WiFi/network GUI
@@ -73,7 +74,7 @@ in
     chromium          # web browser
     obsidian          # note-taking
     spotify-player    # terminal spotify
-    mpv               # webcam
+    mpv               # video, webcam
     w3m
     aichat
   ];

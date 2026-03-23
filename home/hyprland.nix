@@ -1,14 +1,27 @@
 { config, pkgs, ... }:
 {
+  home.file."scripts/wallpaper.sh" = {
+    executable = true;
+    text = ''
+      #!/bin/sh
+      mpvpaper -o "--loop-file=inf --panscan=1.0 no-audio --vo=gpu --hwdec=no" "*" /home/yeghia/Videos/64729-510542342_medium.mp4
+    '';
+  };
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = true;
     settings = {
       monitor = ",preferred,auto,1";
       exec-once = [
         "waybar"
         "nm-applet --indicator"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "bash /home/yeghia/scripts/wallpaper.sh"
       ];
+      misc = {
+      force_default_wallpaper = 0;
+      disable_hyprland_logo = true;
+      };
       input = {
         kb_layout = "us";
         touchpad.natural_scroll = true;
