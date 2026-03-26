@@ -28,13 +28,4 @@
       ];
     };
   };
-
-systemd.user.services.jellyfin-mpv-shim = {
-  Unit.Description = "Jellyfin MPV Shim";
-  Install.WantedBy = [ "default.target" ];
-  Service = {
-    ExecStart = "${pkgs.jellyfin-mpv-shim}/bin/jellyfin-mpv-shim";
-    Restart = "on-failure";
-  };
-};
 }
