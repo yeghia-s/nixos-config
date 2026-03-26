@@ -48,8 +48,9 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    layout = "us,ca,de,am";
+    variant = ",,,phonetic";
+    options = "grp:alt_shift_toggle";
   };
 
   # Enable CUPS to print documents.
@@ -78,7 +79,7 @@
   users.users.yeghia = {
     isNormalUser = true;
     description = "Yeghia";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -123,6 +124,7 @@ services.greetd = {
 services.udev.extraRules = ''
   SUBSYSTEM=="leds", KERNEL=="platform::mute", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chmod 0666 /sys/class/leds/%k/brightness"
   SUBSYSTEM=="leds", KERNEL=="platform::micmute", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chmod 0666 /sys/class/leds/%k/brightness"
+  ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
 '';
 
 services.syncthing = {

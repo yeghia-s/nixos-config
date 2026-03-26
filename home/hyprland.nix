@@ -25,7 +25,9 @@
       disable_hyprland_logo = true;
       };
       input = {
-        kb_layout = "us";
+        kb_layout = "us,ca,de,am";
+        kb_variant = ",,,phonetic";
+        kb_options = "grp:alt_shift_toggle";
         touchpad.natural_scroll = true;
       };
       "$mod" = "SUPER";
@@ -59,7 +61,7 @@
         ", XF86AudioMute, exec, toggle-mute"
         ", XF86AudioMicMute, exec, toggle-micmute"
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+        ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
         ", XF86Display, exec, hyprctl keyword monitor ,preferred,auto,1"
       ];
       binde = [

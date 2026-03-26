@@ -15,6 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    megacmd           # mega cmd tool
     unrar             # unrar package
     swww              # wallpaper
     jellyfin-media-player   # jellyfin client
