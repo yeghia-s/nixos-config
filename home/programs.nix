@@ -37,6 +37,10 @@ programs.alacritty = {
       normal.family = "JetBrainsMono Nerd Font";
       size = 12;
     };
+    window = {
+      opacity = 0.7;
+      blur = true;
+    };
   };
 };
 

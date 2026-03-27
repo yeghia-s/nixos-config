@@ -11,6 +11,15 @@
     enable = true;
     systemd.enable = true;
     settings = {
+      decoration = {
+        rounding = 10;
+        blur = {
+          enabled = true;
+          size = 6;
+          passes = 2;
+          new_optimizations = true;
+        };
+      };
       monitor = ",preferred,auto,1";
       exec-once = [
         "waybar"
