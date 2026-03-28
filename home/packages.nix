@@ -15,6 +15,12 @@ let
 in
 {
   home.packages = with pkgs; [
+    imagemagick
+    inkscape          # image converter
+    nodejs            # node
+    satty             # image editor
+    grim
+    slurp
     megacmd           # mega cmd tool
     unrar             # unrar package
     swww              # wallpaper
