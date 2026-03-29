@@ -226,6 +226,10 @@ powerManagement.powertop.enable = true;
 
 hardware.cpu.intel.updateMicrocode = true;
 
+# enable hardware graphics for opengl
+hardware.graphics.enable = true;
+hardware.graphics.enable32Bit = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Some programs need SUID wrappers, can be configured further or are

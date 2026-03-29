@@ -15,6 +15,8 @@ let
 in
 {
   home.packages = with pkgs; [
+    ffmpeg            # video converter
+    wechat            # chat messenger
     imagemagick
     inkscape          # image converter
     nodejs            # node
