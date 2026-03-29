@@ -7,6 +7,7 @@
     ./hyprland.nix
     ./theme.nix
     ./calendar.nix
+    ./scripts.nix
   ];
 
   home.username = "yeghia";
