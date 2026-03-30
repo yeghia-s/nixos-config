@@ -151,14 +151,6 @@ services.logind = {
   extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
 };
 
-environment.shellAliases = {
-  weather = "curl wttr.in/Toronto?format=3";
-  home = "cd /etc/nixos/home";
-  yeghiserver = "ssh yeghia@yeghiserver.duckdns.org";
-  rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
-  config = "nvim /etc/nixos/configuration.nix";
-};
-
 hardware.bluetooth = {
   enable = true;
   powerOnBoot = true;

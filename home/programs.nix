@@ -10,7 +10,19 @@
 
 programs.bash = {
   enable = true;
+  shellAliases = {
+    weather = "curl wttr.in/Toronto?format=3";
+    home = "cd /etc/nixos/home";
+    rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+    config = "nvim /etc/nixos/configuration.nix";
+    nsync = "cd ~/notes && git add -A && git commit -m \"sync $(date +%Y-%m-%d)\" && git push";
+    inbox = "nvim ~/notes/inbox.md";
+  };
   bashrcExtra = ''
+
+    alias today='nvim ~/notes/daily/$(date +%Y-%m-%d).md'
+    alias week='nvim ~/notes/weekly/$(date +%Y-W%V).md'
+
     function edit-secret() {
       local BACKUP_DIR="$HOME/.secret-backups"
       mkdir -p "$BACKUP_DIR"
@@ -38,7 +50,7 @@ programs.alacritty = {
       size = 12;
     };
     window = {
-      opacity = 0.7;
+      opacity = 0.3;
       blur = true;
     };
   };
@@ -184,7 +196,7 @@ programs.mpv = {
         config = ''
           require('lualine').setup {
             options = {
-              theme = "catppuccin",
+              theme = "auto",
               component_separators = "|",
               section_separators = "",
             };
@@ -245,6 +257,47 @@ programs.mpv = {
           }
         '';
       }
+      {
+      plugin = telekasten-nvim;
+      type = "lua";
+      config = ''
+      require('telekasten').setup {
+      home = vim.fn.expand("~/notes"),
+      dailies = vim.fn.expand("~/notes/daily"),
+      weeklies = vim.fn.expand("~/notes/weekly"),
+      templates = vim.fn.expand("~/notes/templates"),
+      template_new_daily = vim.fn.expand("~/notes/templates/daily.md"),
+        }
+
+
+        vim.keymap.set("n", "<leader>zf", "<cmd>Telekasten find_notes<cr>", { desc = "Find notes" })
+        vim.keymap.set("n", "<leader>zg", "<cmd>Telekasten search_notes<cr>", { desc = "Search notes" })
+        vim.keymap.set("n", "<leader>zn", "<cmd>Telekasten new_note<cr>", { desc = "New note" })
+        vim.keymap.set("n", "<leader>zd", "<cmd>Telekasten goto_today<cr>", { desc = "Daily note" })
+        vim.keymap.set("n", "<leader>zz", "<cmd>Telekasten follow_link<cr>", { desc = "Follow link" })
+        vim.keymap.set("n", "<leader>zb", "<cmd>Telekasten show_backlinks<cr>", { desc = "Backlinks" })
+        vim.keymap.set("n", "<leader>zt", "<cmd>Telekasten show_tags<cr>", { desc = "Tags" })
+        vim.keymap.set("n", "<leader>zp", "<cmd>Telekasten panel<cr>", { desc = "Panel" })
+        vim.keymap.set("n", "<leader>zi", ":e ~/notes/inbox.md<cr>", { desc = "Inbox" })
+      '';
+    }
+    {
+      plugin = todo-comments-nvim;
+      type = "lua";
+      config = ''
+        require('todo-comments').setup()
+        vim.keymap.set('n', '<leader>zo', '<cmd>TodoTelescope<cr>', { desc = "Todo list" })
+      '';
+    }
+    {
+      plugin = render-markdown-nvim;
+      type = "lua";
+      config = ''
+        require('render-markdown').setup({
+          file_types = { 'markdown' },
+        })
+      '';
+    }
     ];
     extraConfig = ''
       set number

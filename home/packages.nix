@@ -15,6 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    fastfetch         # neofetch replacement
     playerctl         # multimedia controller
     ffmpeg            # video converter
     wechat            # chat messenger
