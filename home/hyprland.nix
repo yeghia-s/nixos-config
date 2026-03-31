@@ -20,6 +20,19 @@
           new_optimizations = true;
         };
       };
+      animations = {
+      enabled = true;
+      bezier = [
+        "smoothOut, 0.36, 0, 0.66, -0.56"
+        "overshot, 0.05, 0.9, 0.1, 1.05"
+      ];
+      animation = [
+        "windows, 1, 5, overshot, slide"
+        "windowsOut, 1, 4, smoothOut, slide"
+        "fade, 1, 4, default"
+        "workspaces, 1, 4, overshot, slide"
+      ];
+    };
       monitor = ",preferred,auto,1";
       exec-once = [
         "waybar"

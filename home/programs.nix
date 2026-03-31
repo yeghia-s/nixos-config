@@ -53,6 +53,10 @@ programs.alacritty = {
       opacity = 0.3;
       blur = true;
     };
+    terminal.shell = {
+      program = "bash";
+      args = [ "-c" "fastfetch; exec $SHELL" ];
+    };
   };
 };
 
