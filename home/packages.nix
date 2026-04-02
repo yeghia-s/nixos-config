@@ -15,6 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    obs-studio        # streaming software
     fastfetch         # neofetch replacement
     playerctl         # multimedia controller
     ffmpeg            # video converter
