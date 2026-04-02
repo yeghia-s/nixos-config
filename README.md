@@ -13,7 +13,7 @@ My NixOS configuration for a **ThinkPad T14 Gen 4**, managed with flakes, Home M
 | **Display Manager** | greetd + tuigreet |
 | **Terminal** | Alacritty |
 | **Bar** | Waybar |
-| **Shell** | Zsh |
+| **Shell** | Bash |
 
 ## Features
 
@@ -23,6 +23,11 @@ My NixOS configuration for a **ThinkPad T14 Gen 4**, managed with flakes, Home M
 - **Fingerprint authentication** via fprintd with the `goodix-550a` driver (see note below)
 - **Animated wallpaper** via mpvpaper
 - **Google Calendar sync** via vdirsyncer + khal, configured through Home Manager with sops-nix
+- **TLP** for battery management (charge thresholds: 20% start / 80% stop)
+- **Syncthing** running as a system service
+- **Steam** with Proton-GE and Gamescope
+- **Multi-layout keyboard** — us, ca, de, am (phonetic); toggled with Alt+Shift
+- **xdg-desktop-portal-hyprland** for Wayland portal support
 - **Dev shells** for Flutter/Dart (Stoat client) and OpenGL/C++ (game engine)
 
 ## Structure
