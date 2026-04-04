@@ -15,6 +15,11 @@ let
 in
 {
   home.packages = with pkgs; [
+    hunspellDicts.de-de # German
+    hunspellDicts.fr-any# French
+    hunspellDicts.en-ca # English Canada
+    hunspellDicts.en-us # English US
+    hunspell          # libreoffice spellcheck
     obs-studio        # streaming software
     fastfetch         # neofetch replacement
     playerctl         # multimedia controller

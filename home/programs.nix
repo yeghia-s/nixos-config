@@ -329,7 +329,7 @@ programs.mpv = {
         layer = "top";
         position = "top";
         height = 30;
-        modules-left = [ "hyprland/workspaces" ];
+        modules-left = [ "hyprland/workspaces" "hyprland/language" ];
         modules-center = [ "clock" ];
         modules-right = [ "custom/calendar" "pulseaudio" "backlight" "battery" "network" "tray" ];
         "hyprland/workspaces" = {
@@ -399,6 +399,10 @@ programs.mpv = {
       #workspaces button.active {
         color: #cdd6f4;
         border-bottom: 2px solid #89b4fa;
+      }
+      #language {
+        color: #d3d3d3;
+        padding: 0 10px;
       }
       #clock {
         color: #ffffff;
