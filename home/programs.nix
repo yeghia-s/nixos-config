@@ -21,7 +21,7 @@ programs.bash = {
   bashrcExtra = ''
 
     alias today='nvim ~/notes/daily/$(date +%Y-%m-%d).md'
-    alias week='nvim ~/notes/weekly/$(date +%Y-W%V).md'
+    alias week='nvim ~/notes/weekly/$(date +%G-W%V).md'
 
     function edit-secret() {
       local BACKUP_DIR="$HOME/.secret-backups"
@@ -38,6 +38,18 @@ programs.bash = {
       fi
       shred -u /tmp/secret_edit
       shred -u /tmp/secret_edit.orig
+    }
+
+    function lastweek() {
+      local label=$(date -d "last week" +%G-W%V)
+      local monday=$(date -d "last week monday" +%Y-%m-%d)
+      local sunday=$(date -d "$monday +6 days" +%Y-%m-%d)
+      local target=~/notes/weekly/$label.md
+      if [[ ! -f "$target" ]]; then
+        cp ~/notes/templates/weekly.md "$target"
+        sed -i "1s/.*/# $label ($monday – $sunday)/" "$target"
+      fi
+      nvim "$target"
     }
   '';
 };
@@ -271,6 +283,7 @@ programs.mpv = {
       weeklies = vim.fn.expand("~/notes/weekly"),
       templates = vim.fn.expand("~/notes/templates"),
       template_new_daily = vim.fn.expand("~/notes/templates/daily.md"),
+      template_new_weekly = vim.fn.expand("~/notes/templates/weekly.md"),
         }
 
 
@@ -283,6 +296,7 @@ programs.mpv = {
         vim.keymap.set("n", "<leader>zt", "<cmd>Telekasten show_tags<cr>", { desc = "Tags" })
         vim.keymap.set("n", "<leader>zp", "<cmd>Telekasten panel<cr>", { desc = "Panel" })
         vim.keymap.set("n", "<leader>zi", ":e ~/notes/inbox.md<cr>", { desc = "Inbox" })
+        vim.keymap.set("n", "<leader>zw", "<cmd>Telekasten goto_thisweek<cr>", { desc = "Weekly note" })
       '';
     }
     {

@@ -54,7 +54,10 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+  enable = true;
+  drivers = [ pkgs.canon-cups-ufr2 ];
+};
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -79,7 +82,7 @@
   users.users.yeghia = {
     isNormalUser = true;
     description = "Yeghia";
-    extraGroups = [ "networkmanager" "wheel" "video" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "lp" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -236,6 +239,10 @@ hardware.graphics.enable32Bit = true;
 
   # Enable the OpenSSH daemon.
   services.openssh = {
+      enable = true;
+  };
+
+  services.tailscale = {
       enable = true;
   };
 
