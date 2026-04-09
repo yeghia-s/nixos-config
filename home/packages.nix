@@ -15,6 +15,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    helix               # text editor
     hunspellDicts.de-de # German
     hunspellDicts.fr-any# French
     hunspellDicts.en-ca # English Canada
