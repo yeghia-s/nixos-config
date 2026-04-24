@@ -92,7 +92,6 @@ in
     ripgrep
     imv               # image viewer
     hyprsunset        # night light
-    zathura           # pdf viewing
     keepassxc         # password manager
     chromium          # web browser
     obsidian          # note-taking
