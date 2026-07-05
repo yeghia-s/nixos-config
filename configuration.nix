@@ -112,8 +112,8 @@ services.greetd = {
   kdePackages.breeze-icons
   kdePackages.breeze
   acpi
-  libsForQt5.qt5.qtquickcontrols2
-  libsForQt5.qt5.qtgraphicaleffects
+  qt5.qtquickcontrols2
+  qt5.qtgraphicaleffects
   gnome-icon-theme
   hicolor-icon-theme
   thunderbird
@@ -244,6 +244,14 @@ hardware.graphics.enable32Bit = true;
 
   services.tailscale = {
       enable = true;
+      extraUpFlags = [ "--netfilter-mode=off" ];
+  };
+
+  networking.firewall = {
+    enable = true;
+    allowedUDPPortRanges = [
+      { from = 50000; to = 65535; }
+    ];
   };
 
   # Open ports in the firewall.
